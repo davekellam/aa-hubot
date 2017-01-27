@@ -111,7 +111,7 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     if ( subject != user )
       karma.increment subject
-      msg.send "#{subject} #{karma.incrementResponse()} (Validation: #{Math.floor(Math.random() * Math.random() / Math.random() * 100)})"
+      msg.send "#{subject} #{karma.incrementResponse()} (Validation: #{Math.floor(Math.random() * 100 * Math.random() * 100)})"
     else
       msg.send "#{subject} Naughty naughty, no self-karma."
 
@@ -120,14 +120,14 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     if ( subject != user )
       karma.decrement subject
-      msg.send "#{karma.decrementResponse()} #{subject} (Validation: #{Math.floor(Math.random() * Math.random() / Math.random() * 100)})"
+      msg.send "#{karma.decrementResponse()} #{subject} (Validation: #{Math.floor(Math.random() * 100 * Math.random() * 100)})"
     else
       msg.send "#{subject} Naughty naughty, no self-karma."
 
   robot.hear /(@\S+)[ ]*(\+\-|\-\+)(\s|$)/, (msg) ->
     user = "@" + msg.message.user.mention_name
     subject = msg.match[1].toLowerCase()
-    msg.send "#{subject} #{karma.neutralResponse()} (Validation: #{Math.floor(Math.random() * Math.random() / Math.random() * 100)})"
+    msg.send "#{subject} #{karma.neutralResponse()} (Validation: #{Math.floor(Math.random() * 100 * Math.random() * 100)})"
 
   robot.respond /karma empty ?(\S+[^-\s])$/i, (msg) ->
     subject = msg.match[1].toLowerCase()
