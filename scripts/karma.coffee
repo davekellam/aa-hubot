@@ -78,13 +78,13 @@ class Karma
     @robot.brain.data.karma = @cache
 
   incrementResponse: ->
-     @increment_responses[Math.floor(Math.random() * Math.random())]
+     @increment_responses[Math.floor(Math.random() * @increment_responses.length)]
 
   decrementResponse: ->
-     @decrement_responses[Math.floor(Math.random() * Math.random())]
+     @decrement_responses[Math.floor(Math.random() * @decrement_responses.length)]
 
   neutralResponse: ->
-     @neutral_responses[Math.floor(Math.random() * Math.random())]
+     @neutral_responses[Math.floor(Math.random() * @neutral_responses.length)]
 
   get: (thing) ->
     k = if @cache[thing] then @cache[thing] else 0
@@ -111,7 +111,7 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     if ( subject != user )
       karma.increment subject
-      msg.send "#{subject} #{karma.incrementResponse()} (Karma: #{karma.get(subject)})"
+      msg.send "#{subject} #{karma.incrementResponse()} (Karma: &radic;-#{Math.floor(Math.random() * 100)})"
     else
       msg.send "#{subject} Naughty naughty, no self-karma."
 
@@ -120,14 +120,14 @@ module.exports = (robot) ->
     subject = msg.match[1].toLowerCase()
     if ( subject != user )
       karma.decrement subject
-      msg.send "#{karma.decrementResponse()} #{subject} (Karma: #{karma.get(subject)})"
+      msg.send "#{karma.decrementResponse()} #{subject} (Karma: &radic;-#{Math.floor(Math.random() * 100)})"
     else
       msg.send "#{subject} Naughty naughty, no self-karma."
 
   robot.hear /(@\S+)[ ]*(\+\-|\-\+)(\s|$)/, (msg) ->
     user = "@" + msg.message.user.mention_name
     subject = msg.match[1].toLowerCase()
-    msg.send "#{subject} #{karma.neutralResponse()} (Karma: [still] #{karma.get(subject)})"
+    msg.send "#{subject} #{karma.neutralResponse()} (Karma: &radic;-#{Math.floor(Math.random() * 100)})"
 
   robot.respond /karma empty ?(\S+[^-\s])$/i, (msg) ->
     subject = msg.match[1].toLowerCase()
