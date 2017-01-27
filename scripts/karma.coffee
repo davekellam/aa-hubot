@@ -78,13 +78,13 @@ class Karma
     @robot.brain.data.karma = @cache
 
   incrementResponse: ->
-     @increment_responses[Math.floor(Math.random() * @increment_responses.length)]
+     @increment_responses["&radic;-" Math.floor(Math.random() * Math.random() * 100)]
 
   decrementResponse: ->
-     @decrement_responses[Math.floor(Math.random() * @decrement_responses.length)]
+     @decrement_responses["&radic;-" Math.floor(Math.random() * Math.random() * 100)]
 
   neutralResponse: ->
-     @neutral_responses[Math.floor(Math.random() * @neutral_responses.length)]
+     @neutral_responses["&radic;-" Math.floor(Math.random() * Math.random() * 100)]
 
   get: (thing) ->
     k = if @cache[thing] then @cache[thing] else 0
